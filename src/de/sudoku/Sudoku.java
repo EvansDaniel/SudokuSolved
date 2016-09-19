@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class Sudoku {
 
-    private static final String DATA_DIR = "/IdeaProjects/SudokuSolver/dataFiles/";
+    private static final String DATA_DIR = "/IdeaProjects/SudokuSolved/dataFiles/";
 
 
     public static boolean solvePuzzle(int[][] puzzle) {
@@ -28,7 +28,7 @@ public class Sudoku {
             return solvePuzzle(i+1,j,puzzle);
 
         for (int candidate = 1; candidate <= 9; ++candidate) {
-            if (isLegalMove(i,j,candidate,puzzle)) {
+            if (validMove(i, j, candidate, puzzle)) {
                 puzzle[i][j] = candidate;
                 if (solvePuzzle(i+1,j,puzzle)) // if false, will try next number from 1 to 9, if all false
                     return true;
@@ -43,7 +43,7 @@ public class Sudoku {
         return false;
     }
 
-    private static boolean isLegalMove(int i, int j, int candidate, int[][] puzzle) {
+    private static boolean validMove(int i, int j, int candidate, int[][] puzzle) {
         // not valid of val is already in this row
         for (int k = 0; k < 9; ++k)
             if (candidate == puzzle[k][j])
@@ -89,6 +89,17 @@ public class Sudoku {
         return puzzle;
     }
 
+    public static int[][] parseFileAsMatrix(String someFile) throws FileNotFoundException {
+        Scanner s = new Scanner(new File(getDataDir() + someFile));
+        int[][] puzzle = new int[9][9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                puzzle[i][j] = s.nextInt();
+            }
+        }
+        return puzzle;
+    }
+
     private static String getDataDir() {
         return System.getProperty("user.home") + DATA_DIR;
     }
@@ -96,18 +107,15 @@ public class Sudoku {
     public static void createMatrix(int[][] solution) {
         for (int i = 0; i < 9; ++i) {
             if (i % 3 == 0)
-                System.out.println(" -----------------------");
+                System.out.println("-------------------------");
             for (int j = 0; j < 9; ++j) {
                 if (j % 3 == 0) System.out.print("| ");
-                System.out.print(solution[i][j] == 0
-                        ? " "
-                        : Integer.toString(solution[i][j]));
-
-                System.out.print(' ');
+                if (solution[i][j] == 0) System.out.print(" ");
+                else System.out.print(solution[i][j]);
+                System.out.print(" ");
             }
             System.out.println("|");
         }
-        System.out.println(" -----------------------");
+        System.out.println("-------------------------");
     }
-
 }

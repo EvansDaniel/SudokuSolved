@@ -14,7 +14,7 @@ public class Main {
      * above. Compile with javac
      */
     public static void main(String[] args) throws FileNotFoundException {
-        int[][] puzzle = Sudoku.parseFile("hardSudoku");
+        int[][] puzzle = Sudoku.parseFileAsMatrix("easySudoku_matrixForm");
         Sudoku.createMatrix(puzzle);
         // start at the matrix[0][0]
         if (Sudoku.solvePuzzle(puzzle))
