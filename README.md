@@ -1,7 +1,7 @@
 # SudokuSolved 
 This program will solve any valid sudoku puzzle. Currently, it is configured to solve the puzzle below, the "hardest" puzzle 
 sudoku puzzle known created by Finnish mathematician, Arto Inkala. It scores an 11 star hardness rating (sudoku usually goes from
-1 to 5 stars, 5 being hardest), but this program solves it pretty easiy. 
+1 to 5 stars, 5 being hardest).
 
 <img src="http://i.telegraph.co.uk/multimedia/archive/02260/Untitled-1_2260717b.jpg" width="350"/>
 
